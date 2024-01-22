@@ -22,7 +22,7 @@ for file in filepaths:
             output.append(entry)
 
     # Write the list that contains the filtered entries to a json file
-    with open('instrumentPeople.json', 'a', encoding='utf-8') as file:
+    with open('instrumentPeople.json', 'w', encoding='utf-8') as file:
         json.dump(output, file)
     
 
