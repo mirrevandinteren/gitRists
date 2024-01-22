@@ -23,5 +23,20 @@ for file in filepaths:
 
     # Write the list that contains the filtered entries to a json file
     with open('instrumentPeople.json', 'a', encoding='utf-8') as file:
-        json.dump(output, file, indent= 4)
+        json.dump(output, file)
     
+
+
+# You load the just created file with the following code:
+        
+# Store the data     
+instruments_data = []
+
+# Load the file
+with open('instrumentPeople.json', encoding='utf-8') as file:
+
+    # For every line in the file, add it to the storing variable
+    for line in file:
+        instruments_data.append(line)
+
+
