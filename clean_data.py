@@ -9,8 +9,8 @@ with open("bigdata.json", encoding='utf-8') as file:
 fields = ['ontology/instrument_label', 'ontology/birthDate']
 
 # Open a new CSV
-with open('clean_data.csv', 'w') as csv_file:
-    writer = csv.writer(csv_file, delimiter=';')
+with open('clean_data.csv', 'w', encoding= 'utf-8') as csv_file:
+    writer = csv.writer(csv_file)
     writer.writerow(fields)
     for row in clean_data:
         writer.writerow([row[field] for field in fields])
