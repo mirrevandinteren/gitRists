@@ -17,21 +17,21 @@ for file in filepaths:
         data = json.load(file)
 
     # Store the entries that are being extracted
-    output_loop = []
+    #output_loop = []
 
     # Loop over all the entries in the current file
     for entry in data:
 
         # If both the instrument label and birthdate are present in the entry, extract the entry
         if 'ontology/instrument_label' in entry and 'ontology/birthDate' in entry:
-            output_loop.append(entry)
+            total_output.append(entry)
 
-    total_output.append(output_loop)
+    #total_output.append(output_loop)
 
 
 # Write the list that contains the filtered entries to a json file
 with open('bigdata.json', 'w', encoding='utf-8') as file:
-    json.dump(total_output, file)
+    json.dump(total_output, file, indent = 4)
 
 
 
