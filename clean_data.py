@@ -15,7 +15,7 @@ for item in clean_data:
 fields = ['ontology/instrument_label', 'birthYear', 'ontology/birthDate', 'ontology/birthYear', 'ontology/birthPlace', 'ontology/birthPlace_label' 'ontology/genre_label', 'ontology/genre', 
           'ontology/country', 'ontology/country_label']
 
-# Add missings as NA
+# Add missings as NA and remove uppercases
 for item in clean_data:
     for field in fields:
         if field not in item:
@@ -25,21 +25,21 @@ for item in clean_data:
 
 # Create a new CSV
 with open('clean_data.csv', 'w', encoding= 'utf-8') as csv_file:
-    writer = csv.writer(csv_file)
+    writer = csv.writer(csv_file, delimiter=';')
     writer.writerow(fields)
     for row in clean_data:
         writer.writerow([row[field] for field in fields])
 
-# Clean the data
+# # Clean the data
 
-# Open the newly created CSV file     
-with open('clean_data.csv', encoding='utf-8') as file:
-    reader=DictReader(file)
-    csv_data = list(reader)
+# # Open the newly created CSV file     
+# with open('clean_data.csv', encoding='utf-8') as file:
+#     reader=DictReader(file)
+#     csv_data = list(reader)
 
-# Remove upper cases 
-for entry in csv_data:
-    for key in entry:
-        entry[key]=entry[key].lower()
+# # Remove upper cases 
+# for entry in csv_data:
+#     for key in entry:
+#         entry[key]=entry[key].lower()
 
-print(csv_data)
+# print(csv_data)
