@@ -11,12 +11,28 @@ with open('clean_data.csv', encoding='utf-8') as file:
 
 
 # Fields
-fields = ['instrument_label', 'decade', 'birthYear', 'genre_label']
+fields = ['instrument_label', 'decade', 'birthYear', 'genre_label', 'pop_music', 'classical_music']
 
 # Loop over all the musicians
 for musician in csv_data:
+
+    # Change the instrument label to piano if piano is present at all
     if 'piano' in musician['instrument_label']:
         musician['instrument_label'] = 'piano'
+
+    # If pop or classical music, add columns with True or False
+    if 'pop' in musician['genre_label']:
+        musician['pop_music'] = True
+    else:
+        musician['pop_music'] = False
+
+    if 'classical' in musician['genre_label']:
+        musician['classical_music'] = True
+    else:
+        musician['classical_music'] = False
+    
+
+    
 
 
 # now that the instrument is changed to piano, export to csv file to be handled in R
