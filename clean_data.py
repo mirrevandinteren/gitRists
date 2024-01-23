@@ -8,11 +8,13 @@ with open("bigdata.json", encoding='utf-8') as file:
 # Add a new row birthYear derived from ontology/birthDate
 for item in clean_data:
     if type(item['ontology/birthDate'])!=list:
-        numbers=item['ontology/birthDate'].split("-")
-        item['birthYear']=numbers[0]
+        year, month, day = item['ontology/birthDate'].split("-")
+        item['birthYear']= year
+        decade = year[:3]
+        item['decade'] = decade + '0'
 
 # Extract the fields for the CSV file
-fields = ['ontology/instrument_label', 'birthYear', 'ontology/birthDate', 'ontology/birthYear', 'ontology/birthPlace', 'ontology/birthPlace_label' 'ontology/genre_label', 'ontology/genre', 
+fields = ['ontology/instrument_label', 'decade', 'birthYear', 'ontology/birthDate', 'ontology/birthYear', 'ontology/birthPlace', 'ontology/birthPlace_label' 'ontology/genre_label', 'ontology/genre', 
           'ontology/country', 'ontology/country_label']
 
 # Add missings as NA and remove uppercases
@@ -25,7 +27,7 @@ for item in clean_data:
 
 # Create a new CSV
 with open('clean_data.csv', 'w', encoding= 'utf-8') as csv_file:
-    writer = csv.writer(csv_file, delimiter=';')
+    writer = csv.writer(csv_file, delimiter=',')
     writer.writerow(fields)
     for row in clean_data:
         writer.writerow([row[field] for field in fields])
