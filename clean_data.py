@@ -5,9 +5,14 @@ from csv import DictReader
 with open("bigdata.json", encoding='utf-8') as file:
     clean_data = json.load(file)
 
+# Add a new row birthYear derived from ontology/birthDate
+for item in clean_data:
+    if type(item['ontology/birthDate'])!=list:
+        numbers=item['ontology/birthDate'].split("-")
+        item['birthYear']=numbers[0]
 
 # Extract the fields for the CSV file
-fields = ['ontology/instrument_label', 'ontology/birthDate', 'ontology/birthYear', 'ontology/birthPlace', 'ontology/birthPlace_label' 'ontology/genre_label', 'ontology/genre', 
+fields = ['ontology/instrument_label', 'birthYear', 'ontology/birthDate', 'ontology/birthYear', 'ontology/birthPlace', 'ontology/birthPlace_label' 'ontology/genre_label', 'ontology/genre', 
           'ontology/country', 'ontology/country_label']
 
 # Add missings as NA
@@ -24,11 +29,6 @@ with open('clean_data.csv', 'w', encoding= 'utf-8') as csv_file:
     writer.writerow(fields)
     for row in clean_data:
         writer.writerow([row[field] for field in fields])
-# with open('clean_data.csv', 'w', encoding= 'utf-8') as csv_file:
-#     writer = csv.writer(csv_file)
-#     writer.writerow(fields)
-#     for row in clean_data:
-#         writer.writerow([row[field] for field in fields])
 
 # Clean the data
 
