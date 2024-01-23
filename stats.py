@@ -16,7 +16,7 @@ fields = ['instrument_label', 'decade', 'birthYear', 'genre_label']
 # Loop over all the musicians
 for musician in csv_data:
     if 'piano' in musician['instrument_label']:
-        musician['intrument_label'] = 'piano'
+        musician['instrument_label'] = 'piano'
 
 
 # now that the instrument is changed to piano, export to csv file to be handled in R
