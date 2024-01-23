@@ -16,17 +16,12 @@ for file in filepaths:
     with open(file, encoding='utf-8') as file:
         data = json.load(file)
 
-    # Store the entries that are being extracted
-    #output_loop = []
-
     # Loop over all the entries in the current file
     for entry in data:
 
         # If both the instrument label and birthdate are present in the entry, extract the entry
         if 'ontology/instrument_label' in entry and 'ontology/birthDate' in entry:
             total_output.append(entry)
-
-    #total_output.append(output_loop)
 
 
 # Write the list that contains the filtered entries to a json file
