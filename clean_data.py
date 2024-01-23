@@ -18,34 +18,44 @@ for item in clean_data:
         item['decade'] = decade + '0'
 
 # Extract the fields for the CSV file
-fields = ['ontology/instrument_label', 'decade', 'birthYear', 'ontology/birthDate', 'ontology/birthPlace', 'ontology/birthPlace_label', 'ontology/genre_label', 'ontology/genre', 
-          'ontology/country', 'ontology/country_label']
+fields_old = ['ontology/instrument_label', 'decade', 'birthYear', 'ontology/genre_label']
+
+fields_new = ['instrument_label', 'decade', 'birthYear', 'genre_label']
+
+
 
 # Add missings as NA and remove uppercases
 for item in clean_data:
-    for field in fields:
+    for index, field in enumerate(fields_old):
         if field not in item:
             item[field]='NA'
         if field in item:
-            item[field]=item[field]
+            item[fields_new[index]]=item.pop(fields_old[index])
+
 
 # Create a new CSV
 with open('clean_data.csv', 'w', encoding= 'utf-8') as csv_file:
     writer = csv.writer(csv_file, delimiter=',')
-    writer.writerow(fields)
+    writer.writerow(fields_new)
     for row in clean_data:
-        writer.writerow([row[field] for field in fields])
+        writer.writerow([row[field] for field in fields_new])
 
-# # Clean the data
+# Clean the data
 
-# # Open the newly created CSV file     
-# with open('clean_data.csv', encoding='utf-8') as file:
-#     reader=DictReader(file)
-#     csv_data = list(reader)
+# Open the newly created CSV file     
+with open('clean_data.csv', encoding='utf-8') as file:
+    reader=DictReader(file)
+    csv_data = list(reader)
 
-# # Remove upper cases 
-# for entry in csv_data:
-#     for key in entry:
-#         entry[key]=entry[key].lower()
+# Remove upper cases 
+for entry in csv_data:
+    for key in entry:
+        entry[key]=entry[key].lower()
 
-# print(csv_data)
+# Write lowercased version to csv
+        
+with open('clean_data.csv', 'w', encoding= 'utf-8') as csv_file:
+    writer = csv.writer(csv_file, delimiter=',')
+    writer.writerow(fields_new)
+    for row in csv_data:
+        writer.writerow([row[field] for field in fields_new])
