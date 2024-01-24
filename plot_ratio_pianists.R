@@ -19,5 +19,6 @@ ggplot(data = new_data) +
   xlab('Time') +
   ylab('Ratio of pianists') +
   scale_y_continuous(labels = scales::label_percent()) +
-  geom_line()
+  geom_line() +
+  geom_point()
 ggsave('ratio_pianists.pdf')

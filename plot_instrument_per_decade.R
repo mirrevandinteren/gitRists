@@ -9,8 +9,8 @@ new_data <- data |> select(decade, instrument_label) |>
 ggplot(data = new_data) +
   aes(x = decade) +
   xlim(1800,2020) +
-  xlab('Decades') +
-  ylab('Number of singers') +
-  ggtitle('Singers over the decades', subtitle = 'from 1800 onwards') +
+  xlab('Time') +
+  ylab('Number of pianists') +
+  ggtitle('Pianists over the decades', subtitle = 'from 1800 onwards') +
   geom_bar()
-ggsave('Singing_graph.pdf')
+ggsave('Piano_graph.pdf')
