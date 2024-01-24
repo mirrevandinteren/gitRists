@@ -9,16 +9,14 @@ new_data <- data |> select(decade, instrument_label) |>
   pivot_wider(names_from = musical, values_from = count) |>
   mutate(actual_musician = musician + pianist) |>
   mutate(pianist_ratio = pianist / actual_musician) |>
-  select(decade, pianist_ratio)
-  
+  select(decade, pianist_ratio, actual_musician, pianist)
+
 
 ggplot(data = new_data) +
-  aes(x = decade, y = pianist_ratio) +
-  xlim(1800,2020) +
+  xlim(1900,2020) +
   ggtitle('Ratio of pianist with respect to total number of musicians') +
   xlab('Time') +
-  ylab('Ratio of pianists') +
-  scale_y_continuous(labels = scales::label_percent()) +
-  geom_line() +
-  geom_point()
-ggsave('ratio_pianists.pdf')
+  ylab('Number of musicians') +
+  geom_col(aes(x = decade, y = actual_musician), fill = "blue") +
+  geom_col(aes(x = decade, y = pianist), fill = "orange")
+#ggsave('ratio_pianists.pdf')
