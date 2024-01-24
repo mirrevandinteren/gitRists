@@ -35,7 +35,42 @@ for musician in csv_data:
 
    
 
+list_of_dicts = {}
+
+for musician in csv_data:
+
+    decade = musician['decade']
+    if musician['decade'] not in list_of_dicts:
+        list_of_dicts[decade] = {'pop_pianists'         : 0, 
+                                 'classical_pianists'   : 0,
+                                 'total_musicians'      : 0,
+                                 'total_pianists'       : 0,
+                                 'decade'               : decade}
+
+    list_of_dicts[decade]['total_musicians'] += 1
+
+    if 'piano' in musician['instrument_label']:
+        list_of_dicts[decade]['total_pianists'] += 1
     
+        if 'pop' in musician['genre_label']:
+            list_of_dicts[decade]['pop_pianists'] += 1
+
+        elif 'classical' in musician['genre_label']:
+            list_of_dicts[decade]['classical_pianists'] += 1
+
+
+list_of_dicts = list(list_of_dicts.values())
+
+
+# Open a file in write mode.
+with open('piano_genre_counter.csv', 'w') as f:
+    # Write all the dictionary keys in a file with commas separated.
+    f.write(','.join(list_of_dicts[0].keys()))
+    f.write('\n') # Add a new line
+    for row in list_of_dicts:
+        # Write the values in a row.
+        f.write(','.join(str(x) for x in row.values()))
+        f.write('\n') # Add a new line
 
 
 # now that the instrument is changed to piano, export to csv file to be handled in R
