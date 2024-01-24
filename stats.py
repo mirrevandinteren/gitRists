@@ -43,6 +43,7 @@ for musician in csv_data:
     if musician['decade'] not in list_of_dicts:
         list_of_dicts[decade] = {'pop_pianists'         : 0, 
                                  'classical_pianists'   : 0,
+                                 'jazz_pianists'        : 0,
                                  'total_musicians'      : 0,
                                  'total_pianists'       : 0,
                                  'decade'               : decade}
@@ -55,8 +56,11 @@ for musician in csv_data:
         if 'pop' in musician['genre_label']:
             list_of_dicts[decade]['pop_pianists'] += 1
 
-        elif 'classical' in musician['genre_label']:
+        if 'classical' in musician['genre_label']:
             list_of_dicts[decade]['classical_pianists'] += 1
+
+        if 'jazz' in musician['genre_label']:
+            list_of_dicts[decade]['jazz_pianists'] += 1
 
 
 list_of_dicts = list(list_of_dicts.values())
