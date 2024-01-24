@@ -56,7 +56,7 @@ for musician in csv_data:
         if 'pop' in musician['genre_label']:
             dict_of_dicts[five_year]['pop_pianists'] += 1
 
-        if musician['genre_label'] == 'classical_music':
+        if musician['genre_label'] == 'classical_music' or musician['genre_label'] == 'classical music':
             dict_of_dicts[five_year]['classical_pianists'] += 1
 
         if 'jazz' in musician['genre_label']:
@@ -71,7 +71,7 @@ for musician in csv_data:
         if 'pop' in musician['genre_label']:
             dict_of_dicts[five_year]['pop_guitarists'] += 1
 
-        if musician['genre_label'] == 'classical_music':
+        if musician['genre_label'] == 'classical_music' or musician['genre_label'] == 'classical music':
             dict_of_dicts[five_year]['classical_guitarists'] += 1
 
         if 'jazz' in musician['genre_label']:
@@ -84,7 +84,7 @@ for musician in csv_data:
     if 'jazz' in musician['genre_label']:
         dict_of_dicts[five_year]['jazz_musicians'] += 1
 
-    if musician['genre_label'] == 'classical_music':
+    if musician['genre_label'] == 'classical_music' or musician['genre_label'] == 'classical music':
         dict_of_dicts[five_year]['classical_musicians'] += 1
 
     if 'pop' in musician['genre_label']:
