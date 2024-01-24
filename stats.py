@@ -46,6 +46,9 @@ for musician in csv_data:
                                  'jazz_pianists'        : 0,
                                  'total_musicians'      : 0,
                                  'total_pianists'       : 0,
+                                 'jazz_musicians'       : 0,
+                                 'classical_musicians'  : 0,
+                                 'pop_musicians'        : 0,
                                  'decade'               : decade}
 
     list_of_dicts[decade]['total_musicians'] += 1
@@ -61,6 +64,15 @@ for musician in csv_data:
 
         if 'jazz' in musician['genre_label']:
             list_of_dicts[decade]['jazz_pianists'] += 1
+    
+    if 'jazz' in musician['genre_label']:
+        list_of_dicts[decade]['jazz_musicians'] += 1
+
+    if 'classical' in musician['genre_label']:
+        list_of_dicts[decade]['classical_musicians'] += 1
+
+    if 'pop' in musician['genre_label']:
+        list_of_dicts[decade]['pop_musicians'] += 1
 
 
 list_of_dicts = list(list_of_dicts.values())
