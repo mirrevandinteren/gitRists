@@ -1,7 +1,7 @@
 library(tidyverse)
+library(ggplot2)
 
-piano_genre <- read_csv('C:/Users/Mirre/OneDrive/Documenten/Personal/School/Labcourses/Datascience/group_project/People/piano_genre_counter.csv')
-
+piano_genre <- read_csv("C:/Users/csgb/OneDrive/UCU/ACCMET2J/Week 3 group project/datasets/piano_genre_counter.csv")
 piano_genre <- piano_genre |>
   mutate(ratio_pop = pop_pianists / total_pianists) |>
   mutate(ratio_classical = classical_pianists / total_pianists) |>
@@ -16,9 +16,11 @@ ggplot(data = piano_genre) +
   geom_line(aes(x=decade, y=ratio_jazz), color=rgb(246,169,15, maxColorValue = 255)) +
   geom_line(aes(x=decade, y=ratio_other)) +
   xlab('Time') +
-  ylab('Pianists distribution')
+  ylab('Pianists distribution')+
+  scale_color_manual(name="Legend",
+                    breaks=c('Pop', 'Classical', 'Jazz', 'Other'),
+                    values=c('Pop'=rgb(255,105,180, maxColorValue = 255), 'Classical'=rgb(65,105,225, maxColorValue = 255), 'Jazz'=rgb(246,169,15, maxColorValue = 255), 'Other'='black'))
+       
+       
 ggsave('Pianist_distribution_genre.pdf')
-  
-
-
   
