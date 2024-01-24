@@ -11,7 +11,7 @@ with open('clean_data.csv', encoding='utf-8') as file:
 
 
 # Fields
-fields = ['instrument_label', 'decade', 'birthYear', 'genre_label', 'pop_music', 'classical_music']
+fields = ['instrument_label', 'decade', 'birthYear', 'genre_label', 'genre']
 
 # Loop over all the musicians
 for musician in csv_data:
@@ -21,16 +21,19 @@ for musician in csv_data:
         musician['instrument_label'] = 'piano'
 
     # If pop or classical music, add columns with True or False
-    if 'pop' in musician['genre_label']:
-        musician['pop_music'] = True
-    else:
-        musician['pop_music'] = False
-
-    if 'classical' in musician['genre_label']:
-        musician['classical_music'] = True
-    else:
-        musician['classical_music'] = False
+    if 'pop' in musician['genre_label'] and 'classical' in musician['genre_label']:
+        musician['genre'] = ['pop', 'classical']
     
+    elif 'pop' in musician['genre_label'] and 'classical' not in musician['genre_label']:
+        musician['genre'] = 'pop'
+
+    elif 'classical' in musician['genre_label'] and 'pop' not in musician['genre_label']:
+        musician['genre'] = 'classical'
+    
+    else:
+        musician['genre'] = 'other'
+
+   
 
     
 
