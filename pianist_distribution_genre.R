@@ -6,7 +6,9 @@ piano_genre <- piano_genre |>
   mutate(ratio_pop = pop_pianists / total_pianists) |>
   mutate(ratio_classical = classical_pianists / total_pianists) |>
   mutate(ratio_jazz = jazz_pianists / total_pianists) |>
-  mutate(ratio_other = (total_pianists - jazz_pianists - classical_pianists - pop_pianists) / total_pianists)
+  mutate(ratio_other = (total_pianists - jazz_pianists - classical_pianists - pop_pianists) / total_pianists)|>
+  pivot_longer(cols=c("ratio_pop", "ratio_classical", "ratio_jazz", "ratio_other"), names_to="genres", values_to="ratios")
+
 
 ggplot(data = piano_genre) +
   xlim(1850,2020) +
