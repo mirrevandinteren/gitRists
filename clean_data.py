@@ -26,7 +26,7 @@ for item in clean_data.copy():
         # Find the five year bracket of this musician, if the year ends in 0,1,2,3,4 it's included in the first bracket, if it ends with 5,6,7,8,9
         # it's included in the second bracket
         if int(year[-1]) < 5:
-            five_year_bracket = decade + '5'
+            five_year_bracket = decade + '0'
         elif int(year[-1]) > 4:
             five_year_bracket = decade + '5'
 
