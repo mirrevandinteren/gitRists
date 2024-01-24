@@ -11,37 +11,23 @@ with open('clean_data.csv', encoding='utf-8') as file:
 
 
 # Fields
-fields = ['instrument_label', 'decade', 'birthYear', 'genre_label', 'genre']
+fields = ['instrument_label', 'decade', 'five_year_bracket', 'birthYear', 'genre_label']
+
+ 
+# Create a dictionary of which the keys are the decades
+# The values are all the instrument counters for that decade
+dict_of_dicts = {}
 
 # Loop over all the musicians
 for musician in csv_data:
 
-    # Change the instrument label to piano if piano is present at all
-    if 'piano' in musician['instrument_label']:
-        musician['instrument_label'] = 'piano'
-
-    # If pop or classical music, add columns with True or False
-    if 'pop' in musician['genre_label'] and 'classical' in musician['genre_label']:
-        musician['genre'] = ['pop', 'classical']
-    
-    elif 'pop' in musician['genre_label'] and 'classical' not in musician['genre_label']:
-        musician['genre'] = 'pop'
-
-    elif 'classical' in musician['genre_label'] and 'pop' not in musician['genre_label']:
-        musician['genre'] = 'classical'
-    
-    else:
-        musician['genre'] = 'other'
-
-   
-
-list_of_dicts = {}
-
-for musician in csv_data:
-
+    # Exctract the decade, it comes up often after this point so exctracting explicitly makes sense.
     decade = musician['decade']
-    if musician['decade'] not in list_of_dicts:
-        list_of_dicts[decade] = {'pop_pianists'         : 0, 
+
+    # If this is the first time this decade is iterated, create a dictionary within the storing dictionary for this decade
+    # All the counters are already present and set to zero, later values are added to these.
+    if musician['decade'] not in dict_of_dicts:
+        dict_of_dicts[decade] = {'pop_pianists'         : 0, 
                                  'classical_pianists'   : 0,
                                  'jazz_pianists'        : 0,
                                  'total_musicians'      : 0,
@@ -49,33 +35,54 @@ for musician in csv_data:
                                  'jazz_musicians'       : 0,
                                  'classical_musicians'  : 0,
                                  'pop_musicians'        : 0,
-                                 'decade'               : decade}
+                                 'total_guitarists'     : 0,
+                                 'jazz_guitarists'      : 0,
+                                 'classical_guitarists' : 0,
+                                 'pop_guitarists'       : 0,
+                                 'decade'               : decade,
+                                 'five_year_bracket'    : musician['five_year_bracket']}
 
-    list_of_dicts[decade]['total_musicians'] += 1
+    # Do a lot of counting, variable names speak for themselves.
+        
+    dict_of_dicts[decade]['total_musicians'] += 1
 
     if 'piano' in musician['instrument_label']:
-        list_of_dicts[decade]['total_pianists'] += 1
+        dict_of_dicts[decade]['total_pianists'] += 1
     
         if 'pop' in musician['genre_label']:
-            list_of_dicts[decade]['pop_pianists'] += 1
+            dict_of_dicts[decade]['pop_pianists'] += 1
 
         if 'classical' in musician['genre_label']:
-            list_of_dicts[decade]['classical_pianists'] += 1
+            dict_of_dicts[decade]['classical_pianists'] += 1
 
         if 'jazz' in musician['genre_label']:
-            list_of_dicts[decade]['jazz_pianists'] += 1
+            dict_of_dicts[decade]['jazz_pianists'] += 1
+
+    if 'guitar' in musician['instrument_label']:
+        dict_of_dicts[decade]['total_guitarists'] += 1
     
+        if 'pop' in musician['genre_label']:
+            dict_of_dicts[decade]['pop_guitarists'] += 1
+
+        if 'classical' in musician['genre_label']:
+            dict_of_dicts[decade]['classical_guitarists'] += 1
+
+        if 'jazz' in musician['genre_label']:
+            dict_of_dicts[decade]['jazz_guitarists'] += 1
+
+
     if 'jazz' in musician['genre_label']:
-        list_of_dicts[decade]['jazz_musicians'] += 1
+        dict_of_dicts[decade]['jazz_musicians'] += 1
 
     if 'classical' in musician['genre_label']:
-        list_of_dicts[decade]['classical_musicians'] += 1
+        dict_of_dicts[decade]['classical_musicians'] += 1
 
     if 'pop' in musician['genre_label']:
-        list_of_dicts[decade]['pop_musicians'] += 1
+        dict_of_dicts[decade]['pop_musicians'] += 1
 
 
-list_of_dicts = list(list_of_dicts.values())
+# Create a list that contains dictionaries as elements, the elements are the values of the storing dictionary
+list_of_dicts = list(dict_of_dicts.values())
 
 
 # Open a file in write mode.
@@ -96,5 +103,4 @@ with open('piano_instrument.csv', 'w', encoding= 'utf-8') as csv_file:
     writer.writerow(fields)
     for row in csv_data:
         writer.writerow([row[field] for field in fields])
-
 

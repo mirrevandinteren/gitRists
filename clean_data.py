@@ -21,17 +21,26 @@ for item in clean_data.copy():
     # The decade is found by changing the last character of the string to a 0
     if int(year) >= 1800:
         item['birthYear']= year
-        # replace the last number of the birthyear by a 0
         decade = year[0:3]
-        item['decade'] = decade + '0'
+        
+        # Find the five year bracket of this musician, if the year ends in 0,1,2,3,4 it's included in the first bracket, if it ends with 5,6,7,8,9
+        # it's included in the second bracket
+        if int(year[-1]) < 5:
+            five_year_bracket = decade + '5'
+        elif int(year[-1]) > 4:
+            five_year_bracket = decade + '5'
+
+        # Add the colums to the data
+        item['five_year_bracket']   = five_year_bracket
+        item['decade']              = decade + '0'
     else:
         clean_data.pop(clean_data.index(item))
 
 
 
 # The old fields are the colums of interest, the new fields are their renamed versions.
-fields_old = ['ontology/instrument_label', 'decade', 'birthYear', 'ontology/genre_label']
-fields_new = ['instrument_label', 'decade', 'birthYear', 'genre_label']
+fields_old = ['ontology/instrument_label', 'decade', 'five_year_bracket', 'birthYear', 'ontology/genre_label']
+fields_new = ['instrument_label', 'decade', 'five_year_bracket', 'birthYear', 'genre_label']
 
 
 
