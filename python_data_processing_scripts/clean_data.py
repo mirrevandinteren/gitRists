@@ -12,10 +12,11 @@ The output file includes: instrument_label, decade, five_year_bracket, birthYear
 '''
 
 
+
+
 # Import packages
 import json
 import csv
-
 
 
 # Load the data
@@ -27,10 +28,14 @@ with open("bigdata.json", encoding='utf-8') as file:
 for item in clean_data.copy():
     # Find the birthdate of a musician and store it in year, month, day variables. 
     # This is handled differently if there's a list of birthdates, then the first birthday is used.
-    if type(item['ontology/birthDate']) != list:
-        year, month, day = item['ontology/birthDate'].split("-")
-    elif type(item['ontology/birthDate']) == list:
-        year, month, day = item['ontology/birthDate'][0].split("-")
+    if 'ontology/birthDate' in item:
+        if type(item['ontology/birthDate']) != list:
+            year, month, day = item['ontology/birthDate'].split("-")
+        elif type(item['ontology/birthDate']) == list:
+            year, month, day = item['ontology/birthDate'][0].split("-")
+    
+    if 'ontology/birthYear' in item and 'ontology/birthDate' not in item:
+        year = item['ontology/birthYear']
     
     # Add the columns birthYear and decade to the data, and select the musicians born after 1800.
     # The decade is found by changing the last character of the string to a 0

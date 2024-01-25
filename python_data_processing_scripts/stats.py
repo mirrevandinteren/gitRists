@@ -13,8 +13,10 @@ The numeric data is computed by parsing through all the musicians and counting m
 
 
 
-# Import package
+
+# Import packages
 import csv
+
 
 
 # Load the filtered data   
