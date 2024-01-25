@@ -65,7 +65,7 @@ for musician in csv_data:
         
     dict_of_dicts[five_year]['total_musicians'] += 1
 
-    if 'piano' in musician['instrument_label']:
+    if 'piano' in musician['instrument_label'] or 'keyboard' in musician['instrument_label']:
         dict_of_dicts[five_year]['total_pianists'] += 1
     
         if 'pop' in musician['genre_label']:
