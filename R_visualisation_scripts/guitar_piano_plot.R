@@ -20,6 +20,6 @@ ggplot(data = data) +
   xlab('Time') +
   ylab('Players as % of total musicians') +
   labs(color = 'Instrument') +
-  geom_line(size=0.8) +
+  geom_line(size=0.85) +
   geom_point()
 ggsave('Guitar_piano_plot.pdf')
