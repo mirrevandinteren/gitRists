@@ -1,12 +1,25 @@
 
-import json
-from csv import DictReader
+'''
+Authors: Mirre van Dinteren, Siem Broeder, Blanka Cseres-Gergely, Kate Grossenbacher
+Date: 26 January 2024
+
+
+Description:
+
+This script converts a .csv file with textdata about musicians to another .csv file with numeric data.
+The numeric data is computed by parsing through all the musicians and counting musicians and instruments that fit into a certain category
+
+'''
+
+
+
+# Import package
 import csv
 
 
 # Load the filtered data   
 with open('clean_data.csv', encoding='utf-8') as file:
-    reader=DictReader(file)
+    reader = csv.DictReader(file)
     csv_data = list(reader)
 
 

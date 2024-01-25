@@ -1,6 +1,21 @@
+
+'''
+Authors: Mirre van Dinteren, Siem Broeder, Blanka Cseres-Gergely, Kate Grossenbacher
+Date: 26 January 2024
+
+
+Description:
+
+This script takes a .json file where each entry is a musician and converts it to a .csv file with only data that is used in this research.
+The output file includes: instrument_label, decade, five_year_bracket, birthYear, genre_label.
+
+'''
+
+
+# Import packages
 import json
 import csv
-from csv import DictReader
+
 
 
 # Load the data
@@ -33,6 +48,8 @@ for item in clean_data.copy():
         # Add the colums to the data
         item['five_year_bracket']   = five_year_bracket
         item['decade']              = decade + '0'
+
+    # For entries from before 1800, delete them from the data
     else:
         clean_data.pop(clean_data.index(item))
 
@@ -64,14 +81,14 @@ with open('clean_data.csv', 'w', encoding= 'utf-8') as csv_file:
 
 # Open the newly created CSV file     
 with open('clean_data.csv', encoding='utf-8') as file:
-    reader=DictReader(file)
+    reader = csv.DictReader(file)
     csv_data = list(reader)
 
 
 # Remove upper cases 
 for entry in csv_data:
     for key in entry:
-        entry[key]=entry[key].lower()
+        entry[key] = entry[key].lower()
 
 
 # Write lowercased version to csv
