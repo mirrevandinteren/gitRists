@@ -19,11 +19,12 @@ ggplot(data = guitar_genre) +
   scale_color_manual(values = c(gratio_classical="#003f5c", gratio_jazz="#ffa600", gratio_pop="#ef5675", gratio_rock="#7a5195"),
                      labels = c(gratio_classical="Classical", gratio_jazz="Jazz", gratio_pop="Pop", gratio_rock="Rock")) +
   xlim(1880,1990) +
-  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 0.75)) +
+  scale_y_continuous(labels = scales::label_percent(), limits = c(0,0.7)) +
   theme_light() +
   xlab('Time') +
   ylab('Guitarists distribution') +
-  geom_line(size=0.85) +
+  labs(color = 'Genre') +
+  geom_line(size=0.8) +
   geom_point()
 
 ggsave('Guitarists_distribution_genre.pdf')
