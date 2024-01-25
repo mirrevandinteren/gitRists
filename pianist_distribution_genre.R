@@ -10,6 +10,7 @@ piano_genre <- piano_genre |>
   pivot_longer(cols=c("ratio_pop", "ratio_classical", "ratio_jazz", "ratio_other"), names_to="genres", values_to="ratios") |>
   group_by(five_year_bracket, genres)
 
+# This plot should be a stacked plot
 
 ggplot(data = piano_genre) +
   aes(x = five_year_bracket, y = ratios, color = genres) +

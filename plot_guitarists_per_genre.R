@@ -17,7 +17,8 @@ ggplot(data = guitar_genre) +
   theme_light() +
   xlab('Time') +
   ylab('Guitarists distribution') +
-  geom_line(size=0.8) 
+  geom_line(size=0.8) +
+  geom_point()
 
 
 ggsave('Proportion_of_guitarists_per_genre.pdf')
