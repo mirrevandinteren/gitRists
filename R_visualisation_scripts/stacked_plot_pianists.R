@@ -1,6 +1,6 @@
 library(tidyverse)
 
-data <- read_csv('C:/Users/Mirre/OneDrive/Documenten/Personal/School/Labcourses/Datascience/group_project/People/piano_instrument.csv')
+data <- read_csv("C:/Users/Siem Broeder/Dropbox/UCU Year 3/Making Sense of Data/Research/People/piano_instrument.csv")
 
 new_data <- data |> select(decade, instrument_label) |>
   mutate(musical = if_else(instrument_label == "piano", "pianist", "musician")) |>
