@@ -1,7 +1,7 @@
 library(tidyverse)
 library(ggplot2)
 
-piano_genre <- read_csv('C:/Users/Mirre/OneDrive/Documenten/Personal/School/Labcourses/Datascience/group_project/People/genre_counter.csv')
+piano_genre <- read_csv("C:/Users/Siem Broeder/Dropbox/UCU Year 3/Making Sense of Data/Research/People/genre_counter.csv")
 piano_genre <- piano_genre |>
   mutate(ratio_pop = pop_pianists / total_pianists) |>
   mutate(ratio_classical = classical_pianists / total_pianists) |>
