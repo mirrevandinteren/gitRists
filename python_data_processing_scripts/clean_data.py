@@ -39,7 +39,7 @@ for item in clean_data.copy():
     
     # Add the columns birthYear and decade to the data, and select the musicians born after 1800.
     # The decade is found by changing the last character of the string to a 0
-    if int(year) >= 1800:
+    if int(year) >= 1880:
         item['birthYear']= year
         decade = year[0:3]
         

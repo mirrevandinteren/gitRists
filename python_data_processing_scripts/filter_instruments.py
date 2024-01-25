@@ -44,7 +44,7 @@ for file in filepaths:
         if 'ontology/instrument_label' in entry and 'ontology/birthYear' in entry and 'ontology/birthDate' not in entry:
             total_output.append(entry)
 
-print(len(total_output))
+
 # Write the list that contains the filtered entries to a json file
 with open('bigdata.json', 'w', encoding='utf-8') as file:
     json.dump(total_output, file, indent = 4)
