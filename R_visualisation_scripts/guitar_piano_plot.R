@@ -2,7 +2,7 @@ library(tidyverse)
 # This plot shows the percentage of total musicians that is guitarist or pianist over time.
 
 
-data <- read_csv('C:/Users/Mirre/OneDrive/Documenten/Personal/School/Labcourses/Datascience/group_project/People/genre_counter.csv')
+data <- read_csv('z/People/genre_counter.csv')
 
 data <- data |>
   mutate(ratio_guitarists = total_guitarists / total_musicians) |>
