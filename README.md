@@ -10,4 +10,5 @@ The data used in this research is the 'People of Wikipedia' dataset.
 
 
 ~ Sincerely,
+Team Git.Rists,
 Mirre, Siem, Blanka, and Kate
