@@ -21,10 +21,10 @@ ggplot(data = guitar_genre) +
   xlim(1880,1990) +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0,0.7)) +
   theme_light() +
-  xlab('Time') +
+  xlab('Birthyear of musician') +
   ylab('Guitarists distribution') +
   labs(color = 'Genre') +
-  geom_line(size=0.8) +
+  geom_line(size=0.85) +
   geom_point()
 
 ggsave('Guitarists_distribution_genre.pdf')

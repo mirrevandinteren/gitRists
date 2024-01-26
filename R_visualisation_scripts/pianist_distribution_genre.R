@@ -13,8 +13,6 @@ piano_genre <- piano_genre |>
   pivot_longer(cols=c("ratio_pop", "ratio_classical", "ratio_jazz", "ratio_rock"), names_to="genres", values_to="ratios") |>
   group_by(five_year_bracket, genres)
 
-# This plot should be a stacked plot
-
 ggplot(data = piano_genre) +
   aes(x = five_year_bracket, y = ratios, color = genres) +
   scale_color_manual(values = c(ratio_classical="#003f5c", ratio_jazz="#ffa600", ratio_pop="#ef5675", ratio_rock="#7a5195"),
@@ -22,7 +20,7 @@ ggplot(data = piano_genre) +
   xlim(1880,1990) +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0,0.7)) +
   theme_light() +
-  xlab('Time') +
+  xlab('Birthyear of musician') +
   ylab('Pianists distribution') +
   labs(color = 'Genre') +
   geom_line(size=0.85) +
