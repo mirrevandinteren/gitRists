@@ -15,7 +15,7 @@ ggplot(data = rock_data) +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
   xlim(1905,1990) +
   theme_light() +
-  xlab('Time') +
+  xlab('Birthyear of musician') +
   ylab('Rock players as % of total rock musicians') +
   labs(color = 'Instrument') +
   geom_line(size=0.85) +
