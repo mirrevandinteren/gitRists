@@ -13,7 +13,7 @@ ggplot(data = pop_data) +
   scale_colour_manual(values = c(ratio_pop_guitarists="red", ratio_pop_pianists="#0433b5"), 
                       labels = c(ratio_pop_guitarists="Guitar", ratio_pop_pianists="Piano")) +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
-  xlim(1905,2000) +
+  xlim(1905,1990) +
   theme_light() +
   xlab('Time') +
   ylab('Pop players as % of total pop musicians') +
