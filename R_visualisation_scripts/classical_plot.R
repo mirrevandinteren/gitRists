@@ -13,7 +13,7 @@ ggplot(data = classic_data) +
   scale_colour_manual(values = c(ratio_classical_guitarists="red", ratio_classical_pianists="#0433b5"), 
                       labels = c(ratio_classical_guitarists="Guitar", ratio_classical_pianists="Piano")) +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
-  xlim(1905,2000) +
+  xlim(1905,1990) +
   theme_light() +
   xlab('Time') +
   ylab('Classical players as % of total classical musicians') +

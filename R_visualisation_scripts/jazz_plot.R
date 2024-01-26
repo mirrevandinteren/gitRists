@@ -13,7 +13,7 @@ ggplot(data = jazz_data) +
   scale_colour_manual(values = c(ratio_jazz_guitarists="red", ratio_jazz_pianists="#0433b5"), 
                       labels = c(ratio_jazz_guitarists="Guitar", ratio_jazz_pianists="Piano")) +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
-  xlim(1905,2000) +
+  xlim(1905,1990) +
   theme_light() +
   xlab('Time') +
   ylab('Jazz players as % of total jazz musicians') +

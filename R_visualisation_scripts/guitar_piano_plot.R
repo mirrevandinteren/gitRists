@@ -22,4 +22,4 @@ ggplot(data = data) +
   labs(color = 'Instrument') +
   geom_line(size=0.85) +
   geom_point()
-ggsave('Guitar_piano_plot.pdf')
+ggsave('Guitar_piano_plot.pdf', width = 15, height = 10, units = "cm")

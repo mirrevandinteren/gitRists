@@ -13,7 +13,7 @@ ggplot(data = rock_data) +
   scale_colour_manual(values = c(ratio_rock_guitarists="red", ratio_rock_pianists="#0433b5"), 
                       labels = c(ratio_rock_guitarists="Guitar", ratio_rock_pianists="Piano")) +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1)) +
-  xlim(1905,2000) +
+  xlim(1905,1990) +
   theme_light() +
   xlab('Time') +
   ylab('Rock players as % of total rock musicians') +
