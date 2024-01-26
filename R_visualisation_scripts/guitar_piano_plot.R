@@ -2,13 +2,15 @@ library(tidyverse)
 # This plot shows the percentage of total musicians that is guitarist or pianist over time.
 
 
-data <- read_csv('z/People/genre_counter.csv')
+data <- read_csv('../People/genre_counter.csv')
 
 data <- data |>
   mutate(ratio_guitarists = total_guitarists / total_musicians) |>
   mutate(ratio_pianists = total_pianists / total_musicians) |>
   pivot_longer(cols=c("ratio_guitarists", "ratio_pianists"), values_to = "ratios", names_to = "instrument") |>
-  group_by(five_year_bracket, ratios)
+  group_by(instrument) |>
+  filter(five_year_bracket > 1875) |>
+  summarise(mean_values = mean(ratios))
 
 ggplot(data = data) +
   aes(x = five_year_bracket, y = ratios, color = instrument) +
