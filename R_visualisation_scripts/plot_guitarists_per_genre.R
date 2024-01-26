@@ -12,18 +12,30 @@ guitar_genre <- guitar_genre |>
 
 ggplot(data = guitar_genre) +
   aes(x = five_year_bracket, y = ratios, color = genres) +
-  xlim(1900,1990) +
+  xlim(1905,1990) +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 0.7)) +
   scale_color_manual(values=c(ratio_jazz_guitar="#ffa600", ratio_pop_guitar="#ef5675", ratio_classical_guitar="#003f5c", ratio_rock_guitar="#7a5195"),
                      labels = c(ratio_classical_guitar="Classical", ratio_jazz_guitar="Jazz", ratio_pop_guitar="Pop", ratio_rock_guitar="Rock")) +
   theme_light() +
-  xlab('Time') +
+  xlab('Birthyear of musician') +
   ylab('Guitarists distribution') +
   labs(color = "Genre") +
   geom_line(size=0.85) +
   geom_point()
-
-
 ggsave('Proportion_of_guitarists_per_genre.pdf')
+
+
+ggplot(data = guitar_genre) +
+  aes(x = five_year_bracket, y = ratios, fill = genres) +
+  xlim(1905,1990) +
+  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1.6)) +
+  scale_fill_manual(values=c(ratio_jazz_guitar="#ffa600", ratio_pop_guitar="#ef5675", ratio_classical_guitar="#003f5c", ratio_rock_guitar="#7a5195"),
+                    labels=c(ratio_jazz_guitar="Jazz", ratio_pop_guitar="Pop", ratio_classical_guitar="Classical", ratio_rock_guitar="Rock")) +
+  theme_light() +
+  xlab('Birthyear of musician') +
+  ylab('Guitarists distribution') +
+  labs(fill = "Genre") +
+  geom_col()
+ggsave('Proportion_of_guitarists_per_genre_barplot.pdf')
 
 

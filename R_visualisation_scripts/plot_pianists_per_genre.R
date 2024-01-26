@@ -14,17 +14,28 @@ piano_genre <- piano_genre |>
   
 ggplot(data = piano_genre) +
   aes(x = five_year_bracket, y = ratios, fill = genres) +
-  xlim(1900,1990) +
+  xlim(1905,1990) +
   scale_y_continuous(labels = scales::label_percent(), limits = c(0, 1.6)) +
   scale_fill_manual(values=c(ratio_jazz_piano="#ffa600", ratio_pop_piano="#ef5675", ratio_classical_piano="#003f5c", ratio_rock_piano="#7a5195"),
                      labels=c(ratio_jazz_piano="Jazz", ratio_pop_piano="Pop", ratio_classical_piano="Classical", ratio_rock_piano="Rock")) +
   theme_light() +
-  xlab('Time') +
+  xlab('Birthyear of musician') +
+  ylab('Pianists distribution') +
+  labs(fill = "Genre") +
+  geom_col()
+ggsave('Proportion_of_pianists_per_genre_barplot.pdf')
+
+ggplot(data = piano_genre) +
+  aes(x = five_year_bracket, y = ratios, color = genres) +
+  xlim(1905,1990) +
+  scale_y_continuous(labels = scales::label_percent(), limits = c(0, 0.7)) +
+  scale_color_manual(values=c(ratio_jazz_piano="#ffa600", ratio_pop_piano="#ef5675", ratio_classical_piano="#003f5c", ratio_rock_piano="#7a5195"),
+                     labels = c(ratio_classical_piano="Classical", ratio_jazz_piano="Jazz", ratio_pop_piano="Pop", ratio_rock_piano="Rock")) +
+  theme_light() +
+  xlab('Birthyear of musician') +
   ylab('Pianists distribution') +
   labs(color = "Genre") +
-  geom_col()
-
-  
+  geom_line(size=0.85) +
+  geom_point()
 ggsave('Proportion_of_pianists_per_genre.pdf')
-
 
